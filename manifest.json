@@ -7,9 +7,9 @@
   "theme_color": "#ff9a9e",
   "icons": [
     {
-      "src": "kita.png",
+      "src": "kita.jpg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/jpeg"
     }
   ]
 }
