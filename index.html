@@ -1,9 +1,12 @@
-<!DOCTYPE html>
-<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>1ST🤍</title>
+
+<!-- PWA & ICON -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-512.png">
+<meta name="theme-color" content="#ff69b4">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
@@ -96,73 +99,3 @@ button{
 }
 </style>
 </head>
-
-<body>
-
-<!-- LOGIN -->
-<div id="login">
-  <h2>Masukkan PIN Rahasia 🤍</h2>
-  <input id="pin" type="password" inputmode="numeric" maxlength="6" placeholder="••••••">
-  <button onclick="openApp()">Buka</button>
-</div>
-
-<!-- CONTENT (TERKUNCI) -->
-<div id="content">
-  <h2>Razi Juanda 🤍 Intan Rifany</h2>
-  <p>01-01-2025</p>
-
-  <img id="photo" src="foto.jpg" alt="Foto Kami">
-
-  <div class="text">
-sayang kuuu cintaa kuu intan mameh kuah kuah, selamat anniversary yang ke 1 tahun ya sayang kuu, akhirnya 1 tahun sayang kita udah jadi pasangan, abg kop sayang sama intan, abg pengen kita selalu bahagia, selalu sama sama dalam suka dan duka, abg mohon maaf kalo selama ni sering jadi penyebab kita berantem tapi sumpah demi abg sungguh sungguh ga ada niat jadiin sayang musuh abg, kita pasangan sayang, abg selayaknya harus bisa jaga sayang, cintai sayang, tuntun sayang, tapi kadang kadang abg sendiri pun ilang arah, tapi gapapa sayang abg selalu pengen berubah ke arah yang lebih baik, kalo dalam proses abg berubah jadi pribadi yang lebih baik buat sayang masi ada trouble abg mohon bimbingan sayang ya, tuntun abg selalu supaya abg bisa jadi pribadi yang baik, begitu juga sebaliknya abg ke sayang, di moment 1 tahun kita ini ga banyak yang bisa abg kasih buat sayang, kondisi abg juga ga lagi baik baik aja dalam hal keuangan, tapi abg sebisa mungkin tetep kasi sayang ucapan, walau abg lagi gabisa kasi sayang aniv terbaik kaya orang orang di kasi ini itu sama pasangan nyaa, sabar ya sayang kedepan abg akan usaha semaksimal mungkin demi sayang, demi abg sendiri, dan demi kita dua, makasih ya cantik nya abg selalu hadir dalam hidup abg, i feel better with u babe, terakhir sekali lagi abg mau ucapin selamat anniversary ke 1 tahun ya sayang kuu BIG LOVE for u intan 🤍
-  </div>
-</div>
-
-<!-- AUDIO -->
-<audio id="bgm" preload="auto" loop>
-  <source src="musik.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-const PIN="010125";
-
-function openApp(){
-  const input=document.getElementById("pin").value;
-  if(input===PIN){
-    document.getElementById("login").style.display="none";
-    document.getElementById("content").style.display="block";
-
-    // musik (aman HP)
-    const bgm=document.getElementById("bgm");
-    bgm.volume=0;
-    bgm.play().then(()=>{
-      let v=0;
-      const f=setInterval(()=>{
-        v+=0.02;
-        bgm.volume=Math.min(v,1);
-        if(v>=1) clearInterval(f);
-      },100);
-    }).catch(()=>{});
-
-    startLove();
-  }else{
-    alert("PIN salah 🤍");
-    document.getElementById("pin").value="";
-  }
-}
-
-function startLove(){
-  setInterval(()=>{
-    const l=document.createElement("div");
-    l.className="love";
-    l.textContent=["🤍","💗","🌸","✨"][Math.floor(Math.random()*4)];
-    l.style.left=Math.random()*100+"vw";
-    l.style.animationDuration=(6+Math.random()*4)+"s";
-    document.body.appendChild(l);
-    setTimeout(()=>l.remove(),10000);
-  },900);
-}
-</script>
-
-</body>
-</html>
