@@ -6,96 +6,93 @@
 <title>1ST🤍</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,BlinkMacSystemFont}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+
 body{
   min-height:100vh;
   background:linear-gradient(135deg,#ff9acb,#ffd1e8);
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
-/* LAYOUT */
-#login,#content{
+/* LOGIN */
+#login{
   min-height:100vh;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  padding:20px;
   text-align:center;
-  position:relative;
-  z-index:5;
+  padding:20px;
 }
-.hidden{display:none}
 
-/* PIN */
 #pin{
   padding:14px;
-  font-size:20px;
+  font-size:18px;
   width:200px;
-  text-align:center;
   border-radius:14px;
   border:2px solid #fff;
-  outline:none;
+  text-align:center;
   margin:15px 0;
 }
+
 button{
-  padding:12px 22px;
+  padding:12px 26px;
   border:none;
-  border-radius:30px;
+  border-radius:26px;
   background:#ff4f9a;
   color:#fff;
   font-size:16px;
-  cursor:pointer;
 }
-.shake{animation:shake .4s;border-color:#ff3b3b!important}
-@keyframes shake{
-  0%{transform:translateX(0)}
-  25%{transform:translateX(-6px)}
-  50%{transform:translateX(6px)}
-  75%{transform:translateX(-6px)}
-  100%{transform:translateX(0)}
-}
-.unlock{animation:unlock .6s forwards}
-@keyframes unlock{from{opacity:1}to{opacity:0;transform:scale(1.1)}}
 
-/* FOTO — RASIO ASLI (TIDAK PETAK) */
+/* CONTENT (TERKUNCI) */
+#content{
+  display:none;
+  padding:20px;
+  text-align:center;
+}
+
+/* FOTO RASIO ASLI */
 #photo{
   width:100%;
-  max-width:480px;
-  height:auto;              /* KUNCI: ikut rasio asli */
-  object-fit:contain;       /* TIDAK DIPOTONG */
-  border-radius:24px;
-  box-shadow:0 14px 40px rgba(0,0,0,.3);
-  margin:25px 0;
+  max-width:440px;
+  height:auto;
+  object-fit:contain;
+  border-radius:22px;
+  box-shadow:0 14px 36px rgba(0,0,0,.3);
+  margin:22px auto;
+  display:block;
   background:#fff;
   position:relative;
-  z-index:5;                /* di atas love */
+  z-index:5;
 }
 
 /* TEKS */
 .text{
   max-width:720px;
-  background:rgba(255,255,255,.9);
-  padding:22px;
+  margin:20px auto;
+  background:rgba(255,255,255,.92);
+  padding:20px;
   border-radius:22px;
   line-height:1.6;
   font-size:15px;
   position:relative;
-  z-index:5;                /* di atas love */
+  z-index:5;
 }
 
-/* LOVE HALUS (BELAKANG) */
+/* LOVE */
 .love{
   position:fixed;
-  z-index:3;                /* di belakang foto & teks */
+  bottom:-20px;
   font-size:14px;
   opacity:.35;
   pointer-events:none;
-  animation:float 7s linear infinite;
+  animation:float 8s linear infinite;
+  z-index:1;
 }
+
 @keyframes float{
-  from{transform:translateY(110vh);opacity:.5}
-  to{transform:translateY(-15vh);opacity:0}
+  from{transform:translateY(0)}
+  to{transform:translateY(-120vh);opacity:0}
 }
 </style>
 </head>
@@ -105,17 +102,15 @@ button{
 <!-- LOGIN -->
 <div id="login">
   <h2>Masukkan PIN Rahasia 🤍</h2>
-  <input id="pin" type="password" inputmode="numeric" maxlength="6"
-         placeholder="••••••" autocomplete="off">
-  <button onclick="cek()">Buka</button>
+  <input id="pin" type="password" inputmode="numeric" maxlength="6" placeholder="••••••">
+  <button onclick="openApp()">Buka</button>
 </div>
 
-<!-- CONTENT -->
-<div id="content" class="hidden">
+<!-- CONTENT (TERKUNCI) -->
+<div id="content">
   <h2>Razi Juanda 🤍 Intan Rifany</h2>
-  <p>Jadian: 01-01-2025</p>
+  <p>01-01-2025</p>
 
-  <!-- FOTO FULL RASIO ASLI -->
   <img id="photo" src="foto.jpg" alt="Foto Kami">
 
   <div class="text">
@@ -130,47 +125,42 @@ sayang kuuu cintaa kuu intan mameh kuah kuah, selamat anniversary yang ke 1 tahu
 
 <script>
 const PIN="010125";
-const pinIn=document.getElementById("pin");
-const login=document.getElementById("login");
-const content=document.getElementById("content");
-const bgm=document.getElementById("bgm");
 
-function cek(){
-  if(pinIn.value===PIN){
-    login.classList.add("unlock");
-    setTimeout(()=>{
-      login.classList.add("hidden");
-      content.classList.remove("hidden");
+function openApp(){
+  const input=document.getElementById("pin").value;
+  if(input===PIN){
+    document.getElementById("login").style.display="none";
+    document.getElementById("content").style.display="block";
 
-      // musik aman di HP (dipicu klik)
-      bgm.volume=0;
-      bgm.play().then(()=>{
-        let v=0; const f=setInterval(()=>{
-          v+=0.02; bgm.volume=Math.min(v,1);
-          if(v>=1) clearInterval(f);
-        },100);
-      }).catch(()=>{});
+    // musik (aman HP)
+    const bgm=document.getElementById("bgm");
+    bgm.volume=0;
+    bgm.play().then(()=>{
+      let v=0;
+      const f=setInterval(()=>{
+        v+=0.02;
+        bgm.volume=Math.min(v,1);
+        if(v>=1) clearInterval(f);
+      },100);
+    }).catch(()=>{});
 
-      startLove();
-    },600);
+    startLove();
   }else{
-    pinIn.classList.add("shake");
-    pinIn.value="";
-    setTimeout(()=>pinIn.classList.remove("shake"),400);
+    alert("PIN salah 🤍");
+    document.getElementById("pin").value="";
   }
 }
-pinIn.addEventListener("keyup",e=>{if(e.key==="Enter") cek();});
 
 function startLove(){
   setInterval(()=>{
     const l=document.createElement("div");
     l.className="love";
     l.textContent=["🤍","💗","🌸","✨"][Math.floor(Math.random()*4)];
-    l.style.left=(Math.random()<.5?(Math.random()*18):(82+Math.random()*18))+"vw";
+    l.style.left=Math.random()*100+"vw";
     l.style.animationDuration=(6+Math.random()*4)+"s";
     document.body.appendChild(l);
     setTimeout(()=>l.remove(),10000);
-  },800);
+  },900);
 }
 </script>
 
