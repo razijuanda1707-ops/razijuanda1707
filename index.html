@@ -6,27 +6,61 @@
 <title>1ST🤍</title>
 
 <style>
-:root{--c1:#ff9a9e;--c2:#fad0c4}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont;
+}
+
 body{
-  margin:0;font-family:Arial,sans-serif;min-height:100vh;
-  background:linear-gradient(120deg,var(--c1),var(--c2));
-  transition:background 3s ease;
-  overflow-x:hidden;overflow-y:auto;user-select:none
+  min-height:100vh;
+  background:linear-gradient(135deg,#ff9acb,#ffd1e8);
+  overflow-x:hidden;
 }
+
+/* LAYOUT */
+#login,#content{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  text-align:center;
+  position:relative;
+  z-index:4;
+}
+
 .hidden{display:none}
-.blur{filter:blur(6px)}
 
-#effects{position:fixed;inset:0;pointer-events:none;z-index:1}
-.effect{position:absolute;animation:floatUp linear forwards}
-@keyframes floatUp{
-  from{transform:translateY(0);opacity:1}
-  to{transform:translateY(-120vh);opacity:0}
+/* PIN */
+#pin{
+  padding:14px;
+  font-size:20px;
+  width:200px;
+  text-align:center;
+  border-radius:14px;
+  border:2px solid #fff;
+  outline:none;
+  margin:15px 0;
+  background:#fff;
 }
 
-/* PIN SALAH */
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:30px;
+  background:#ff4f9a;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* PIN ANIMATION */
 .shake{
-  animation:shake 0.4s;
-  border:2px solid #ff4d4d !important;
+  animation:shake .4s;
+  border-color:#ff3b3b!important;
 }
 @keyframes shake{
   0%{transform:translateX(0)}
@@ -36,113 +70,117 @@ body{
   100%{transform:translateX(0)}
 }
 
-/* PIN BENAR */
 .unlock{
-  animation:unlock 0.6s forwards;
+  animation:unlock .6s forwards;
 }
 @keyframes unlock{
   from{opacity:1;transform:scale(1)}
   to{opacity:0;transform:scale(1.1)}
 }
 
-.box{
-  background:#fff;margin:20px auto;padding:20px;
-  border-radius:18px;width:95%;max-width:600px;
-  position:relative;z-index:2
+/* FOTO */
+#photo{
+  width:220px;
+  height:220px;
+  border-radius:22px;
+  object-fit:cover;
+  box-shadow:0 12px 35px rgba(0,0,0,.25);
+  margin:20px 0;
+  position:relative;
+  z-index:5; /* di atas love */
 }
 
-input{
-  padding:12px;border-radius:10px;border:1px solid #ccc;
-  font-size:18px;width:80%;text-align:center;letter-spacing:6px
-}
-button{
-  margin-top:15px;padding:12px 25px;border:none;
-  border-radius:12px;background:#ff6f91;
-  color:#fff;font-size:16px;cursor:pointer
-}
-
-.photo-wrap{
-  width:80%;max-width:300px;margin:15px auto;
-  border-radius:20px;background:linear-gradient(135deg,#ffd1dc,#fff);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden
-}
-.photo-wrap img{width:100%;border-radius:20px}
-.photo-wrap span{
-  position:absolute;font-size:22px;font-weight:bold;
-  color:#ff6f91;text-align:center
+/* TEKS */
+.text{
+  max-width:720px;
+  background:rgba(255,255,255,.88);
+  padding:22px;
+  border-radius:22px;
+  line-height:1.6;
+  font-size:15px;
+  position:relative;
+  z-index:5; /* di atas love */
 }
 
-p{line-height:1.6;text-align:left}
+/* LOVE KECIL & HALUS */
+.love{
+  position:fixed;
+  z-index:2;            /* di bawah foto & teks */
+  font-size:14px;
+  opacity:0.35;
+  filter:blur(0.3px);
+  animation:float 7s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes float{
+  from{transform:translateY(110vh);opacity:.5}
+  to{transform:translateY(-15vh);opacity:0}
+}
 </style>
 </head>
 
 <body>
 
-<div id="effects"></div>
-
 <!-- LOGIN -->
-<div id="login" class="box">
-  <h2>🔒 Masukkan PIN</h2>
+<div id="login">
+  <h2>Masukkan PIN Rahasia 🤍</h2>
   <input id="pin"
     type="password"
     inputmode="numeric"
-    autocomplete="off"
-    placeholder="••••••"
     maxlength="6"
+    placeholder="••••••"
+    autocomplete="off"
     oncopy="return false"
-    onpaste="return false"
-    oncut="return false">
-  <br>
-  <button onclick="cek()">Buka 🤍</button>
+    onpaste="return false">
+  <button onclick="cek()">Buka</button>
 </div>
 
 <!-- CONTENT -->
-<div id="content" class="box hidden">
+<div id="content" class="hidden">
   <h2>Razi Juanda 🤍 Intan Rifany</h2>
-  <p id="counter"></p>
+  <p>Jadian: 01-01-2025</p>
 
-  <div class="photo-wrap">
-    <img src="foto.jpg"
-      onerror="this.style.display='none';document.getElementById('fallback').style.display='block'">
-    <span id="fallback" style="display:none">Razi 🤍 Intan</span>
-  </div>
+  <img id="photo" src="foto.jpg" alt="Foto Kami">
 
-  <p>
+  <div class="text">
 sayang kuuu cintaa kuu intan mameh kuah kuah, selamat anniversary yang ke 1 tahun ya sayang kuu, akhirnya 1 tahun sayang kita udah jadi pasangan, abg kop sayang sama intan, abg pengen kita selalu bahagia, selalu sama sama dalam suka dan duka, abg mohon maaf kalo selama ni sering jadi penyebab kita berantem tapi sumpah demi abg sungguh sungguh ga ada niat jadiin sayang musuh abg, kita pasangan sayang, abg selayaknya harus bisa jaga sayang, cintai sayang, tuntun sayang, tapi kadang kadang abg sendiri pun ilang arah, tapi gapapa sayang abg selalu pengen berubah ke arah yang lebih baik, kalo dalam proses abg berubah jadi pribadi yang lebih baik buat sayang masi ada trouble abg mohon bimbingan sayang ya, tuntun abg selalu supaya abg bisa jadi pribadi yang baik, begitu juga sebaliknya abg ke sayang, di moment 1 tahun kita ini ga banyak yang bisa abg kasih buat sayang, kondisi abg juga ga lagi baik baik aja dalam hal keuangan, tapi abg sebisa mungkin tetep kasi sayang ucapan, walau abg lagi gabisa kasi sayang aniv terbaik kaya orang orang di kasi ini itu sama pasangan nyaa, sabar ya sayang kedepan abg akan usaha semaksimal mungkin demi sayang, demi abg sendiri, dan demi kita dua, makasih ya cantik nya abg selalu hadir dalam hidup abg, i feel better with u babe, terakhir sekali lagi abg mau ucapin selamat anniversary ke 1 tahun ya sayang kuu BIG LOVE for u intan 🤍
-  </p>
-
-  <button onclick="burstLove()">💖 Love</button>
+  </div>
 </div>
 
-<audio id="bgm" src="mrld.mp3" loop></audio>
+<!-- AUDIO -->
+<audio id="bgm" loop>
+  <source src="musik.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 const PIN="010125";
+const pinIn=document.getElementById("pin");
 const login=document.getElementById("login");
 const content=document.getElementById("content");
 const bgm=document.getElementById("bgm");
-const pinIn=document.getElementById("pin");
-const counter=document.getElementById("counter");
-const effects=document.getElementById("effects");
-
-const symbols=["🤍","💖","💕","💘","🌸","✨"];
-const themes=[
-  ["#ff9a9e","#fad0c4"],
-  ["#a18cd1","#fbc2eb"],
-  ["#84fab0","#8fd3f4"],
-  ["#fccb90","#d57eeb"]
-];
 
 function cek(){
-  if(pinIn.value.trim()===PIN){
+  if(pinIn.value===PIN){
     login.classList.add("unlock");
     navigator.vibrate?.(100);
+
     setTimeout(()=>{
       login.classList.add("hidden");
       content.classList.remove("hidden");
-      bgm.play();
-      startCounter();startEffects();startTheme();photoBurst();
+
+      // musik aman di HP (harus setelah klik)
+      bgm.volume=0;
+      bgm.play().then(()=>{
+        let v=0;
+        const fade=setInterval(()=>{
+          v+=0.02;
+          bgm.volume=Math.min(v,1);
+          if(v>=1) clearInterval(fade);
+        },100);
+      }).catch(()=>{});
+
+      startLove();
     },600);
   }else{
     pinIn.classList.add("shake");
@@ -156,48 +194,26 @@ pinIn.addEventListener("keyup",e=>{
   if(e.key==="Enter") cek();
 });
 
-function startCounter(){
-  const start=new Date("2025-01-01");
-  const now=new Date();
-  counter.innerText="Sejak 01-01-2025 • "+
-    Math.floor((now-start)/(1000*60*60*24))+" hari bersama 🤍";
-}
-
-function createEffect(x,y){
-  const e=document.createElement("div");
-  e.className="effect";
-  e.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
-  e.style.left=x+"px";e.style.top=y;
-  e.style.fontSize=(14+Math.random()*24)+"px";
-  e.style.animationDuration=(6+Math.random()*5)+"s";
-  effects.appendChild(e);
-  setTimeout(()=>e.remove(),10000);
-}
-
-function startEffects(){
-  setInterval(()=>createEffect(Math.random()*window.innerWidth,"100vh"),500);
-}
-function burstLove(){
-  for(let i=0;i<30;i++)createEffect(Math.random()*window.innerWidth,"100vh");
-}
-function photoBurst(){
+/* LOVE KECIL, JARANG, TIDAK GANGGU */
+function startLove(){
   setInterval(()=>{
-    const r=document.querySelector(".photo-wrap").getBoundingClientRect();
-    createEffect(r.left+r.width/2,r.top+"px");
-  },1200);
-}
-function startTheme(){
-  let i=0;
-  setInterval(()=>{
-    document.documentElement.style.setProperty("--c1",themes[i][0]);
-    document.documentElement.style.setProperty("--c2",themes[i][1]);
-    i=(i+1)%themes.length;
-  },6000);
-}
+    const l=document.createElement("div");
+    l.className="love";
+    const icons=["🤍","💗","🌸","✨"];
+    l.innerHTML=icons[Math.floor(Math.random()*icons.length)];
 
-document.addEventListener("visibilitychange",()=>{
-  document.body.classList.toggle("blur",document.hidden);
-});
+    // hanya kiri & kanan layar
+    if(Math.random()>0.5){
+      l.style.left=(Math.random()*18)+"vw";
+    }else{
+      l.style.left=(82+Math.random()*18)+"vw";
+    }
+
+    l.style.animationDuration=(6+Math.random()*4)+"s";
+    document.body.appendChild(l);
+    setTimeout(()=>l.remove(),10000);
+  },800);
+}
 </script>
 
 </body>
