@@ -180,3 +180,51 @@ function startCounter(){
 function startEffects(){
   setInterval(()=>createEffect(Math.random()*innerWidth,"100vh"),500);
 }
+
+function createEffect(x,y){
+  const e=document.createElement("div");
+  e.className="effect";
+  e.innerHTML=symbols[Math.floor(Math.random()*symbols.length)];
+  e.style.left=x+"px";
+  e.style.top=y;
+  e.style.fontSize=(14+Math.random()*22)+"px";
+  e.style.animationDuration=(6+Math.random()*5)+"s";
+  effects.appendChild(e);
+  setTimeout(()=>e.remove(),10000);
+}
+
+function burstLove(){
+  for(let i=0;i<25;i++)
+    createEffect(Math.random()*innerWidth,"100vh");
+}
+
+/* LOVE KELUAR DARI FOTO */
+function photoBurst(){
+  const rect=photo.getBoundingClientRect();
+  setInterval(()=>{
+    createEffect(rect.left+rect.width/2, rect.top+"px");
+  },1200);
+}
+
+/* THEME ROTATION */
+function startTheme(){
+  let i=0;
+  setInterval(()=>{
+    document.documentElement.style.setProperty("--c1",themes[i][0]);
+    document.documentElement.style.setProperty("--c2",themes[i][1]);
+    i=(i+1)%themes.length;
+  },6000);
+}
+
+/* ANTI SCREENSHOT STYLE (WEB VERSION) */
+document.addEventListener("visibilitychange",()=>{
+  if(document.hidden){
+    document.body.classList.add("blur");
+  }else{
+    document.body.classList.remove("blur");
+  }
+});
+</script>
+
+</body>
+</html>
