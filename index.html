@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>1ST 🤍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+}
+.box{
+  background: rgba(0,0,0,.35);
+  padding:20px;
+  border-radius:20px;
+  width:90%;
+  max-width:400px;
+  text-align:center;
+  animation: fadeIn 1.5s;
+}
+input{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+  width:80%;
+  text-align:center;
+  font-size:16px;
+}
+button{
+  margin-top:10px;
+  padding:10px 20px;
+  border:none;
+  border-radius:20px;
+  background:#ff6b81;
+  color:white;
+  font-size:16px;
+}
+.hidden{display:none;}
+img{
+  width:100%;
+  border-radius:15px;
+  margin-top:15px;
+  animation: zoom 6s infinite;
+}
+@keyframes zoom{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+  100%{transform:scale(1);}
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;}
+}
+</style>
+</head>
+<body>
+
+<div class="box" id="login">
+  <h2>🔐 Masukkan PIN</h2>
+  <input type="password" id="pin" placeholder="PIN">
+  <br>
+  <button onclick="cek()">Buka 🤍</button>
+</div>
+
+<div class="box hidden" id="content">
+  <h2>Razi Juanda 🤍 Intan Rifany</h2>
+  <p><b>01-01-2025</b></p>
+
+  <p>
+    sayang kuuu cintaa kuu intan mameh kuah kuah, selamat anniversary
+    yang ke 1 tahun ya sayang kuu 🤍
+  </p>
+
+  <img src="kita.jpg">
+</div>
+
+<script>
+const PIN = "010125";
+function cek(){
+  if(document.getElementById('pin').value === PIN){
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('content').classList.remove('hidden');
+  }else{
+    alert("PIN salah 😅");
+  }
+}
+</script>
+
+</body>
+</html>
