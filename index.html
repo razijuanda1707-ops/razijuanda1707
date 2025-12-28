@@ -58,6 +58,22 @@ img{
   to{opacity:1;}
 }
 </style>
+  .fade{
+  opacity:0;
+  animation: show 1s forwards;
+}
+
+.fade:nth-of-type(3){animation-delay:0.5s;}
+.fade:nth-of-type(4){animation-delay:1.2s;}
+.fade:nth-of-type(5){animation-delay:2s;}
+.fade:nth-of-type(6){animation-delay:2.8s;}
+.fade:nth-of-type(7){animation-delay:3.6s;}
+.fade:nth-of-type(8){animation-delay:4.4s;}
+.fade:nth-of-type(9){animation-delay:5.2s;}
+
+@keyframes show{
+  to{opacity:1;}
+}
 </head>
 <body>
 
@@ -72,6 +88,27 @@ img{
   <h2>Razi Juanda 🤍 Intan Rifany</h2>
   <p><b>01-01-2025</b></p>
 
+  <p class="fade">sayang kuuu cintaa kuu intan mameh kuah kuah, selamat anniversary yang ke 1 tahun ya sayang kuu, akhirnya 1 tahun sayang kita udah jadi pasangan.</p>
+
+  <p class="fade">abg kop sayang sama intan, abg pengen kita selalu bahagia, selalu sama sama dalam suka dan duka. abg mohon maaf kalo selama ini sering jadi penyebab kita berantem.</p>
+
+  <p class="fade">sumpah demi abg, ga pernah ada niat jadiin sayang musuh abg. kita pasangan sayang, abg harus jaga, cintai, dan tuntun sayang.</p>
+
+  <p class="fade">kadang abg sendiri pun ilang arah, tapi gapapa. abg selalu pengen berubah jadi lebih baik buat sayang. kalo dalam proses itu masih ada trouble, mohon bimbing abg ya.</p>
+
+  <p class="fade">di momen 1 tahun ini ga banyak yang bisa abg kasih. kondisi keuangan abg juga lagi ga baik, tapi abg tetap pengen kasi ucapan dari hati.</p>
+
+  <p class="fade">sabar ya sayang, ke depan abg bakal usaha semaksimal mungkin demi sayang, demi abg, dan demi kita berdua.</p>
+
+  <p class="fade">makasih ya cantiknya abg, selalu hadir di hidup abg. i feel better with u babe.</p>
+
+  <p class="fade"><b>BIG LOVE FOR U 🤍</b></p>
+
+  <img src="kita.jpg">
+</div>
+  <h2>Razi Juanda 🤍 Intan Rifany</h2>
+  <p><b>01-01-2025</b></p>
+
   <p>
     sayang kuuu cintaa kuu intan mameh kuah kuah, selamat anniversary
     yang ke 1 tahun ya sayang kuu 🤍
@@ -83,14 +120,19 @@ img{
 <script>
 const PIN = "010125";
 function cek(){
+  function cek(){
   if(document.getElementById('pin').value === PIN){
     document.getElementById('login').classList.add('hidden');
     document.getElementById('content').classList.remove('hidden');
+    document.getElementById('bgm').play();
   }else{
     alert("PIN salah 😅");
   }
 }
 </script>
-
+  
 </body>
+  audio id="bgm" loop>
+  <source src="mrld - An Art Gallery Could Never Be As Unique As You (Official Audio).mp3" type="audio/mpeg">
+</audio>
 </html>
