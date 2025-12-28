@@ -1,9 +1,9 @@
 {
-  "name": "Love App",
-  "short_name": "Love",
-  "start_url": "./index.html",
+  "name": "Razi ❤️ Intan",
+  "short_name": "R&I",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#ffb6d5",
   "theme_color": "#ff69b4",
   "icons": [
     {
